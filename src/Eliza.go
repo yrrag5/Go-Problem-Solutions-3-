@@ -46,11 +46,12 @@ func reflection(input string) string {
     // List of reflections
     pronouns := [][]string {
         {`am`, `are`},
+        {`my`, `your`},
+        {`your`, `my`},
         {`I`, `you`},
         {`you`, `I`},
         {`me`, `you`},
-        {`my`, `your`},
-        {`your`, `my`},
+        
     }
 
     boundaries := regexp.MustCompile(`\b`)
@@ -67,9 +68,16 @@ func reflection(input string) string {
 		}
     }
 
-    return strings.Join(values, ``)
-
+    join := strings.Join(values, ``)
+    // Q5 Reflect pronouns
+    reResp := []string {
+        "Why do ",
+        "How do you know that ",
+        "I find it interesting that ",
+    }
+    return(reResp[rand.Intn(len(reResp))] + join)
 }
+
 func main(){
     rand.Seed(time.Now().UTC().UnixNano())
     
@@ -115,8 +123,8 @@ func main(){
     fmt.Println()
 
      // Q4 Reflection
-    fmt.Println("Input: " + " I am supposed to just take what you're saying at face value?")
-    fmt.Println("Output: " + reflection("I am supposed to just take what your saying at face value?"))
+    fmt.Println("Input: " + " I am not happy with your responses.")
+    fmt.Println("Output: " + reflection("I am not happy with your responses."))
     fmt.Println()
 
 
