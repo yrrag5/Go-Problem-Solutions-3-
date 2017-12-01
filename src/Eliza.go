@@ -1,4 +1,6 @@
 // Author: Garry Cummins
+
+// Resource: https://gist.github.com/ianmcloughlin/c4c2b8dc586d06943f54b75d9e2250fe
 package main
 
 import (
@@ -7,6 +9,8 @@ import (
     "time"
     // Regular Expressions import
     "regexp"
+    // String import
+    "strings"
 )
 func ElizaResponse(input string) string {
     // Q2
@@ -35,6 +39,37 @@ func ElizaResponse(input string) string {
     return responses[rand.Intn(len(responses))]
 }// Function
 
+// Q4 Reflection
+
+func reflection(input string) string {
+
+    // List of reflections
+    pronouns := [][]string {
+        {`am`, `are`},
+        {`I`, `you`},
+        {`you`, `I`},
+        {`me`, `you`},
+        {`my`, `your`},
+        {`your`, `my`},
+    }
+
+    boundaries := regexp.MustCompile(`\b`)
+
+    values := boundaries.Split(input, -1)
+
+    // Loops through tokens until reflect finds a match
+    for i, token := range values {
+		for _, reflection := range pronouns {
+			if matched, _ := regexp.MatchString(reflection[0], token); matched {
+				values[i] = reflection[1]
+				break
+			}
+		}
+    }
+
+    return strings.Join(values, ``)
+
+}
 func main(){
     rand.Seed(time.Now().UTC().UnixNano())
     
@@ -50,7 +85,7 @@ func main(){
     fmt.Println("Output: " + ElizaResponse(" I was my father’s favourite."))
     fmt.Println()
 
-    fmt.Println("Input: " + " I’m looking forward to the weekend.")
+    fmt.Println("Input: " + " I'm looking forward to the weekend.")
     fmt.Println("Output: " + ElizaResponse(" I’m looking forward to the weekend."))
     fmt.Println()
 
@@ -59,7 +94,7 @@ func main(){
     fmt.Println()
 
     // Q3
-    //  I am, I'm inputs and outputs
+    //  I am inputs and outputs
 
     fmt.Println("Input: " + " I am happy")
     fmt.Println("Output: " + ElizaResponse("I am happy"))
@@ -75,8 +110,13 @@ func main(){
     fmt.Println()
 
     
-    fmt.Println("Input: " + " I am supposed to just take what you’re saying at face value?")
-    fmt.Println("Output: " + ElizaResponse("I am supposed to just take what you’re saying at face value?"))
+    fmt.Println("Input: " + " I am supposed to just take what you're saying at face value?")
+    fmt.Println("Output: " + ElizaResponse("I am supposed to just take what your saying at face value?"))
+    fmt.Println()
+
+     // Q4 Reflection
+    fmt.Println("Input: " + " I am supposed to just take what you're saying at face value?")
+    fmt.Println("Output: " + reflection("I am supposed to just take what your saying at face value?"))
     fmt.Println()
 
 
