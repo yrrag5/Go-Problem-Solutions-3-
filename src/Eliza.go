@@ -46,6 +46,7 @@ func reflection(input string) string {
     // List of reflections
     pronouns := [][]string {
         {`am`, `are`},
+        {`are`, `am`},
         {`my`, `your`},
         {`your`, `my`},
         {`I`, `you`},
@@ -122,9 +123,23 @@ func main(){
     fmt.Println("Output: " + ElizaResponse("I am supposed to just take what your saying at face value?"))
     fmt.Println()
 
-     // Q4 Reflection
+     // Q4, Q5 Reflection
     fmt.Println("Input: " + " I am not happy with your responses.")
     fmt.Println("Output: " + reflection("I am not happy with your responses."))
+    fmt.Println()
+
+    // Q6 Adding my own input patterns 
+
+    fmt.Println("Input: " + " I am not feeling well")
+    fmt.Println("Output: " + reflection("I am not feeling well"))
+    fmt.Println()
+
+    fmt.Println("Input: " + " I can see that you are nervous")
+    fmt.Println("Output: " + reflection("I can see that you are nervous"))
+    fmt.Println()
+
+    fmt.Println("Input: " + " This isn't going to go the way you think")
+    fmt.Println("Output: " + reflection("This isn't going to go the way you think"))
     fmt.Println()
 
 
