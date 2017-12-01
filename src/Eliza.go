@@ -5,10 +5,18 @@ import (
     "fmt"
     "math/rand"
     "time"
+    // Regular expressions import 
+    "regexp"
 )
 func ElizaResponse(input string) string {
+    // Q2
+    //[Ff] matches every father inputted, (?i). for flag, \b before and after 
+    // father to check for grandfather 
+    if matched, _ := regexp.MatchString(`(?i).*\bfather\b.*`, input); matched {
+        return "Why don’t you tell me more about your father?"
+    }
 
-    // Default reponses for Eliza
+  
     responses := []string{
       "I'm not sure what you’re trying to say. Could you explain it to me?",
       "How does that make you feel?",
@@ -22,7 +30,6 @@ func ElizaResponse(input string) string {
 
 func main(){
     rand.Seed(time.Now().UTC().UnixNano())
-    // Hard coded responses
     fmt.Println("Input: " + " People say I look like both my mother and father.")
     fmt.Println("Output: " + ElizaResponse(" People say I look like both my mother and father."))
     fmt.Println()
@@ -42,4 +49,6 @@ func main(){
     fmt.Println("Input: " + " My grandfather was French!")
     fmt.Println("Output: " + ElizaResponse(" My grandfather was French!"))
     fmt.Println()
+
+    // add I am inputs
 } // Main
